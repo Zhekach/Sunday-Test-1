@@ -7,14 +7,26 @@ using UnityEngine.UI;
 public class ImageLoad : MonoBehaviour
 {
 
-    //public Image image;
+    public Image image;
     public string url;
     private Texture2D texture;
     private Sprite sprite;
+    public bool isLoad;
+    public float positionY;
 
     void Start()
     {
-        StartCoroutine(DownloadImage(url));
+        
+    }
+
+    private void Update()
+    {
+        positionY = this.GetComponent<RectTransform>().position.y;
+        if(positionY > 0 && !isLoad)
+        {
+            StartCoroutine(DownloadImage(url));
+            isLoad = true;
+        }
     }
 
     IEnumerator DownloadImage(string MediaUrl)
@@ -28,7 +40,6 @@ public class ImageLoad : MonoBehaviour
             //YourRawImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
             texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
             sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width/2, texture.height/2));
-            GetComponent<Image>().overrideSprite = sprite;
-
+            GetComponent<Image>().overrideSprite = sprite; 
     }
 }
