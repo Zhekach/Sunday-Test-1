@@ -38,8 +38,9 @@ public class ImageLoad : MonoBehaviour
             Debug.Log(request.error);
         else
             //YourRawImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width/2, texture.height/2));
+           //// texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            texture = (DownloadHandlerTexture.GetContent(request));
+        sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width/2, texture.height/2));
             GetComponent<Image>().overrideSprite = sprite; 
     }
 }
