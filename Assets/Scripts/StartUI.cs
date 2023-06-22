@@ -10,7 +10,7 @@ public class StartUI : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Image bar;
-    private int loadTime = 500;
+    private int loadTime = 20;          // 20 approximately equal 2 seconds
     public TMP_Text percentText;
     public float percent;
 
@@ -30,11 +30,11 @@ public class StartUI : MonoBehaviour
         print(Time.time);
         for (int i = 0; i <= loadTime; i++)
         {
-            yield return new WaitForSecondsRealtime(0.001f);
+            yield return new WaitForSecondsRealtime(0.1f);
             bar.fillAmount = (float)i / loadTime;
             percent = (float)i/loadTime*100;
             percentText.text = (int)percent + "%";
-            //print(Time.time);
+            print(Time.time);
         }
         print(Time.time);
 
