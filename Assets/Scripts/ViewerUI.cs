@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GalleryUI : MonoBehaviour
+public class ViewerUI : MonoBehaviour
 {
-    public void LookImage()
+    public void GoToGallery()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

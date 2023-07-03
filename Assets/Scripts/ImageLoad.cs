@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ImageLoad : MonoBehaviour
 {
 
-    public Image image;
+    //public Image image;
     public string url;
     private Texture2D texture;
     private Sprite sprite;
@@ -22,12 +23,18 @@ public class ImageLoad : MonoBehaviour
     private void Update()
     {
         positionY = this.GetComponent<RectTransform>().position.y;
-        if(positionY > 0 && !isLoad)
+        if(positionY > -300 && !isLoad)
         {
             StartCoroutine(DownloadImage(url));
             isLoad = true;
         }
     }
+
+    /*void OnClick()
+    {
+        SceneManager.LoadScene(2);
+    }
+    */
 
     IEnumerator DownloadImage(string MediaUrl)
     { 
@@ -40,7 +47,7 @@ public class ImageLoad : MonoBehaviour
             //YourRawImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
            //// texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
             texture = (DownloadHandlerTexture.GetContent(request));
-        sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width/2, texture.height/2));
+            sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width/2, texture.height/2));
             GetComponent<Image>().overrideSprite = sprite; 
     }
 }
